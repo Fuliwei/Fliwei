@@ -51,4 +51,32 @@ after_dict.pop(key)  ===>每取完一次最大值就从字典中删除对应的k
 result_f.write("</table></html>")
 
 result_f.close()  ===>打开文件后就要关闭文件
+
+6.蜗牛进阶：用冒泡排序实现最大次数筛选,具体脚本见count_ip.py
+	
+	知识点:1.用元组作为字典的key可以实现多维度的统计，如统计url、ip两个维度如何实现(见脚本count_ip2.py)
+
+		   即实现真正的访问同一条url的ip才算是相同的访问记录
+			
+		   2.打开文件操作为了避免忘记关闭文件可以使用with,还可以一次打开多个文件
+
+			with open("文件名","模式") as f:
+
+			with open("文件名1"，"模式") as  f1 ,open("文件名2"，"模式") as  f2 ,open("文件名3"，"模式") as  f3  ...
+
+			更加优雅的语法:
+
+			from contextlib improt ExitStack
+
+			with ExitStack() as stack:
+  		 		
+			files = [stack.enter_context(open(fname)) for fname in [filename1, filename2, filename3]]
+    		
+				for i, j, k in zip(files[0], files[1], files[2]):
+        		
+					print(i, j, k)
+			
+
+			
+
 */
