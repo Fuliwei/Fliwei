@@ -57,7 +57,22 @@ result_f.close()  ===>打开文件后就要关闭文件
 	知识点:1.用元组作为字典的key可以实现多维度的统计，如统计url、ip两个维度如何实现(见脚本count_ip2.py)
 
 		   即实现真正的访问同一条url的ip才算是相同的访问记录
-			
+		   
+           多维度的赋值:
+
+				常见赋值:
+					for line in log_f:   
+
+   						ip = line.strip().split(' ')[0]===>可以优化为如下:tmp = line.strip().split(' ')
+
+    					url = line.strip().split(' ')[6]===============> ip , url = tmp[0] ,tmp[6]
+
+    					res_dict[(ip,url)] =res_dict.get((ip,url),0)+1
+	
+				简化赋值:
+
+					变量1 , 变量2 ...  = value1 ,value2 ...			
+
 		   2.打开文件操作为了避免忘记关闭文件可以使用with,还可以一次打开多个文件
 
 			with open("文件名","模式") as f:
