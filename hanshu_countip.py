@@ -22,19 +22,19 @@ def getip(filename,mode):
 #将字典通过res_dict.items()转换为列表进行冒泡排序[('218.200.66.205', 1), ('218.200.66.204', 1)]格式大概所示
 #冒泡排序对字典所转换的列表中的ip出现次数进行排序
 #有可以提升的空间使用sort函数进行排序
-def maopao_sort(arr):#此处传递字典参数时,只需要当成一个普通参数传递就行.
+def maopao_sort(arr,times):#此处传递字典参数时,只需要当成一个普通参数传递就行.传入需要统计前times次ip
 	res_list = arr.items()
 #	print res_list
 #	print '*' * 40
 #	print arr
-	for i in range(1,6):
+	for i in range(1,times+1):
 		for x in range(len(res_list)-1) :
 			if res_list[x][1] > res_list[x+1][1]:
 				res_list[x] , res_list[x+1] = res_list[x+1] , res_list[x]
 	#print res_list
 	#print '-' * 40 
 	#print   res_list[-5:]
-	return  res_list[-5:]	#将统计出来最大的ip出现次数
+	return  res_list[-times:]	#将统计出来最大的ip出现次数
 
 def write_html(file,mode,result):
 	print result
@@ -55,6 +55,6 @@ def write_html(file,mode,result):
 
 res1 = getip(filename="log.log",mode='r')
 #print res1
-res2 = maopao_sort(res1)
+res2 = maopao_sort(res1,10)
 #print res2
 write_html("/var/www/html/hanshu_count_ip.html","w",res2)
